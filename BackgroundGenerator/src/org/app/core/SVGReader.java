@@ -12,7 +12,6 @@ import org.apache.batik.bridge.UserAgentAdapter;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class SVGReader {
