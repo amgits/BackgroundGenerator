@@ -11,12 +11,14 @@ import org.apache.batik.bridge.UserAgent;
 import org.apache.batik.bridge.UserAgentAdapter;
 import org.apache.batik.util.XMLResourceDescriptor;
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class Test {
+public class SVGReader {
 	private Document svgDocument;
 	
-	public Test(String filePath) {
+	public SVGReader(String filePath) {
 		setSVGDocument(createSVGDocument(filePath));
 		System.out.println(this.getSVGDocument().getBaseURI());
 	}
@@ -55,11 +57,15 @@ public class Test {
 	}
 	
 	public static void main(String[] args) {
-		Test t = new Test("C:/Users/bella/Documents/SVG Files/template.svg");
-		NodeList nl = t.getSVGDocument().getElementsByTagName("g").item(0).getChildNodes();
+		SVGReader svgReader = new SVGReader("C:/Users/bella/Documents/SVG Files/template.svg");
+		NodeList nl = svgReader.getSVGDocument().getElementsByTagName("g").item(0).getChildNodes();
 		
 		for( int i = 0; i < nl.getLength(); i++) {
-			System.out.println("Nodename " + i + ": " + nl.item(i).getNodeName());
+			NamedNodeMap nnm = nl.item(i).getAttributes();
+			
+			if (nnm != null) {
+				System.out.println("NodeID " + i + ": " + nnm.getNamedItem("id").getNodeValue());
+			}
 		}
 	}
 }
